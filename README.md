@@ -11,3 +11,4 @@ steps:
 4. It will scan the file .   
    
    
+NOTE: EVIL.pdf is a MALICIOUS FILE. KINDLY HANDLE WITH CARE.
