@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Pizza House</title>
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+  
+    <link rel="stylesheet" href="{{ url_for('static', filename='1.css') }}">
+    <style>
+        #container {
+            position: fixed;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(255, 255, 255, 0.816);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(137, 129, 128, 0.9);
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="bx bx-menu" id="menu-icon"></div>
+        <ul class="navbar">
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li>Help|</li>
+            <li><a href="{{ url_for('job') }}">Job</a></li>
+        </ul>
+    </header>
+    <section class="home" id="home">
+        <div class="home-text">
+            <h1>Pizza House</h1>
+            <h1>Pizza House</h1>
+            <h2>Each slice is a taste of perfection</h2>
+        </div>
+        <div class="home-img">
+            <img src="{{ url_for('static', filename='pz.jpg') }}" >
+        </div>
+    </section>
+
+    <div id="container">
+        <h1>Help Desk</h1>
+        <form id="helpDeskForm" onsubmit="return validateForm()">
+
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" pattern="[A-Za-z\s]+" title="Please enter a valid name with alphabets and spaces only" required><br><br>
+
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" title="Please enter a valid 10-digit phone number" required><br><br>
+
+            <label for="orderId">Order ID:</label>
+            <input type="text" id="orderId" name="orderId" pattern="[0-9]+" title="Please enter a valid order ID" required><br><br>
+
+            <label for="query">Enter the complaint:</label>
+            <input type="text" id="query" name="query" required><br><br>
+            
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    <script>
+        function validateForm() {
+            var nameInput = document.getElementById('name');
+            var orderIdInput = document.getElementById('orderId');
+            var phoneInput = document.getElementById('phone');
+            var queryInput = document.getElementById('query');
+
+            var nameRegex = /^[A-Za-z\s]+$/;
+            var orderIdRegex = /^[0-9]+$/;
+            var phoneRegex = /^[0-9]{10}$/;
+
+            if (!nameRegex.test(nameInput.value)) {
+                alert('Please enter a valid name with alphabets and spaces only.');
+                return false;
+            }
+
+            if (!orderIdRegex.test(orderIdInput.value)) {
+                alert('Please enter a valid order ID (numbers only).');
+                return false;
+            }
+
+            if (!phoneRegex.test(phoneInput.value)) {
+                alert('Please enter a valid 10-digit phone number (numbers only).');
+                return false;
+            }
+
+            if (queryInput.value.trim() === '') {
+                alert('Please enter a complaint.');
+                return false;
+            }
+   
+            alert('Submitted successfully!');
+
+            setTimeout(function() {
+                document.getElementById("helpDeskForm").innerHTML = "<br><br><br><p>We will contact you soon !!!.</p>";
+            }, 500); 
+
+            return false;
+        }
+    </script>
+</body>
+
+</html>

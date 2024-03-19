@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizza House</title>
+    <!-- Box Icons -->
+    <link rel="stylesheet"
+  href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+  <!-- Link To CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='1.css') }}">
+
+</head>
+<body>
+    <!-- Navbar -->
+    <header>
+        
+        <div class="bx bx-menu" id="menu-icon"></div>
+
+        <ul class="navbar">
+            <li>Home|</li>
+            <li><a href="{{ url_for('help') }}">Help</a></li>
+            <li><a href="{{ url_for('job') }}">Job</a></li>
+            
+        </ul>
+    </header>
+    <!-- Home  Section-->
+    <section class="home" id="home">
+        <div class="home-text">
+            
+              
+            <h2>Pizza House</h2>
+            <h3> Each slice is taste of <br> perfection</h3><br>
+            <a href="{{ url_for('orders') }}" class="btn">Order Now</a>
+        </div>
+        <div class="home-img">
+            <img src="{{ url_for('static', filename='pz.jpg') }}">
+        </div>
+    </section>
+
+       <!-- Contact -->
+       <section class="contact" id="contact">
+        <div class="contact-box">
+            <h3>Pizza House</h3>
+            <span>Connect With Us</span>
+            <div class="social">
+                <a href="#"><i class='bx bxl-facebook' ></i></a>
+                <a href="#"><i class='bx bxl-twitter' ></i></a>
+                <a href="#"><i class='bx bxl-instagram' ></i></a>
+            </div>
+        </div>
+        </section>
+</body>
+</html>

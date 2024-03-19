@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Pizza House</title>
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <!-- Link To CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='1.css') }}">
+    <style>
+       
+        #container {
+            position: fixed;
+            top: 67%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(255, 255, 255, 0.682);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(137, 129, 128, 0.9);
+            text-align: center;
+        }
+
+        label {
+            display: inline-block;
+            width: 100px;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+
+        input,
+        select,
+        #myFile {
+            width: 200px;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+
+        input[type="submit"] {
+            width: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="bx bx-menu" id="menu-icon"></div>
+        <ul class="navbar">
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('help') }}">Help</a></li>
+            <li>Job|</li>
+        </ul>
+    </header>
+    <section class="home" id="home">
+        <div class="home-text">
+            <h1>Pizza House</h1>
+            <h2>Each slice is taste of <br> perfection</h2>
+        </div>
+        <div class="home-img">
+            <img src="{{ url_for('static', filename='pz.jpg') }}" >
+        </div>
+    </section>
+    <div id="container">
+        <h1>APPLY NOW</h1>
+        <form id="applyForm" action="/" method="post" enctype="multipart/form-data" >
+
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required pattern="[A-Za-z\s]+"><br>
+            <label for="job">Job:</label>
+            <select name="job" id="job" required>
+                <option value="" disabled selected>Select a job</option>
+                <option value="chef">Chef</option>
+                <option value="manager">Manager</option>
+                <option value="DeliveryPerson">Delivery Person</option>
+                <option value="helper">Helper</option>
+                <option value="receptionist">Receptionist</option>
+            </select><br>
+            <label for="file">Upload Resume (PDF or DOC):</label>
+            <input type="file" id="file" name="file" accept=".pdf, .doc" required><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Pizza House</title>
+    <link rel="stylesheet"
+  href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+  <!-- Link To CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='1.css') }}">
+    <style>
+        
+
+        #container {
+            position: fixed;
+            
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(255, 255, 255, 0.682);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(137, 129, 128, 0.9);
+            text-align: center;
+        }
+        
+        
+    </style>
+</head>
+
+<body>
+    <header>
+        
+        <div class="bx bx-menu" id="menu-icon"></div>
+
+        <ul class="navbar">
+           
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('help') }}">Help</a></li>
+            <li><a href="{{ url_for('job') }}">Job</a></li>
+            
+        </ul>
+    </header>
+    <section class="home" id="home">
+        <div class="home-text">
+            <h1>Pizza House</h1>
+            <h2>Each slice is taste of <br> perfection</h2>
+        </div>
+        <div class="home-img">
+            <img src="{{ url_for('static', filename='pz.jpg') }}" >
+        </div>
+    </section>
+    <div id="container">
+        <h1>Place your order</h1>
+        <form id="orderForm">
+            <label for="name">Enter name:</label>
+            <input type="text" id="name" name="name" required><br>
+            <label for="address"> Address: </label>
+            <input type="text" id="address" name="address" required><br>
+
+            <label for="pizza">Choose your Pizza:</label>
+            <select name="pizza" id="pizza">
+                <option value="margarita">Margarita</option>
+                <option value="napolitana">Napolitana</option>
+                <option value="capricciosa">Capricciosa</option>
+                <option value="calzone">Calzone</option>
+                <option value="Romana">Romana</option>
+                <option value="Pepperoni">Pepperoni</option>
+                <option value="Indi-spice">Indi-spice</option>
+            </select><br>
+            <label for="sizePizza">Size:</label>
+            <select name="sizePizza" id="sizePizza">
+                <option value="small">Small</option>
+                <option value="med">Medium</option>
+                <option value="large">Large</option>
+            </select><br>
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" name="quantity" min="1" value="1" required><br>
+
+            <label for="paymentMethod">Select Payment Method:</label>
+            <select name="paymentMethod" id="paymentMethod" required>
+                <option value="upi">UPI</option>
+                <option value="cod">Cash on Delivery</option>
+                <option value="card">Credit/Debit Card</option>
+            </select><br>
+
+            <input type="submit" value="Submit">
+        </form>
+        <div id="bill"></div>
+
+        <script>
+            document.getElementById('orderForm').addEventListener('submit', function (event) {
+                event.preventDefault(); // Prevent form submission
+
+                
+                const orderID = Math.floor(Math.random() * 1000000);
+
+                const name = document.getElementById('name').value;
+                const address = document.getElementById('address').value;
+                const pizza = document.getElementById('pizza').value;
+                const sizePizza = document.getElementById('sizePizza').value;
+                const quantity = parseInt(document.getElementById('quantity').value);
+                const paymentMethod = document.getElementById('paymentMethod').value;
+
+                
+                let amount;
+                switch (sizePizza) {
+                    case 'small':
+                        amount = 289 * quantity;
+                        break;
+                    case 'med':
+                        amount = 489 * quantity;
+                        break;
+                    case 'large':
+                        amount = 699 * quantity;
+                        break;
+                    default:
+                        amount = 0;
+                        break;
+                }
+
+                
+                const bill = `
+                    <h2>Order Summary</h2>
+                    <p><strong>Order ID:</strong> ${orderID}</p>
+                    <p><strong>Name:</strong> ${name}</p>
+                    <p><strong>Address:</strong> ${address}</p>
+                    <p><strong>Pizza:</strong> ${pizza}</p>
+                    <p><strong>Size:</strong> ${sizePizza}</p>
+                    <p><strong>Quantity:</strong> ${quantity}</p>
+                    <p><strong>Total Amount:</strong> ₹${amount}</p>
+                    <p><strong>Payment Method:</strong> ${paymentMethod}</p>
+                `;
+
+                document.getElementById('bill').innerHTML = bill;
+            
+            });
+        </script>
+        Your Order has been Placed!<br>
+       
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scan Result</title>
+    <script>
+        // Function to freeze the page
+        function freezePage() {
+            document.body.style.overflow = 'hidden'; // Disable scrolling
+            alert("You have reached the maximum number of malicious attempts. Your access is blocked.");
+        }
+    </script>
+    {% if malicious_count >= 3 %}
+        <script>
+            window.onload = freezePage; // Call freezePage when page loads
+        </script>
+    {% endif %}
+</head>
+<body>
+    <center>
+        {% if report.positives == 0 %}
+            <p>Submitted successfully! <br> Reload to go to homepage</p>
+        {% else %}
+            <p>Malicious file detected! <br> Please choose another file <br></p>
+            <br><br>
+            <p>Multiple malicious attempts can lead to blocking your access.</p>
+            <p>Number of times malicious files detected: {{ malicious_count }}</p> <!-- Display the count here -->
+        {% endif %}
+    </center>
+</body>
+</html>
